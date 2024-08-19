@@ -1,15 +1,18 @@
 type InputFieldProps = {
   id: string;
   label: string;
+  name: string;
   type: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  error?: string;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
   id,
   label,
+  name,
   type,
   value,
   onChange,
@@ -23,6 +26,7 @@ const InputField: React.FC<InputFieldProps> = ({
       <input
         id={id}
         value={value}
+        name={name}
         type={type}
         onChange={onChange}
         className="w-full rounded border border-neutral-200 bg-neutral-50 px-3.5 py-2.5 text-sm text-neutral-700 placeholder-neutral-500"

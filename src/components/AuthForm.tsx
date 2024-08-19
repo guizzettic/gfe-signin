@@ -2,20 +2,62 @@ import { useState } from "react";
 import InputField from "./InputField";
 import PasswordRequirements from "./PasswordRequirements";
 import Button from "./Button";
+import PasswordInput from "./PasswordInput";
+import useFormValidation from "../hooks/useFormValidation";
+import {
+  required,
+  isEmail,
+  minLength,
+  hasUpperCase,
+  hasLowerCase,
+  hasNumber,
+  hasSpecialChar,
+  maxLength,
+} from "../utils/validation";
 
-interface AuthoFormProps {
+interface AuthFormProps {
   type: "signin" | "signup";
   onSubmit: (email: string, password: string) => void;
 }
 
-const AuthoForm: React.FC<AuthoFormProps> = ({ type, onSubmit }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit }) => {
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const { fields, errors, handleChange, validateForm } = useFormValidation(
+    {
+      email: {
+        value: "",
+        rules: [required, isEmail],
+      },
+      password: {
+        value: "",
+        rules:
+          type === "signup"
+            ? [
+                required,
+                minLength(8),
+                maxLength(64),
+                hasUpperCase,
+                hasLowerCase,
+                hasNumber,
+                hasSpecialChar,
+              ]
+            : [required],
+      },
+    },
+    type === "signup",
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(email, password);
+    if (type === "signin") {
+      if (validateForm()) {
+        onSubmit(fields.email.value, fields.password.value);
+      }
+    } else {
+      if (Object.values(errors).every((error) => !error) && agreeTerms) {
+        onSubmit(fields.email.value, fields.password.value);
+      }
+    }
   };
 
   return (
@@ -26,22 +68,27 @@ const AuthoForm: React.FC<AuthoFormProps> = ({ type, onSubmit }) => {
       <InputField
         id="email-field"
         type="email"
+        name="email"
         label="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={fields.email.value}
+        onChange={handleChange}
         placeholder="john@example.com"
+        error={errors.email}
       />
       <div>
-        <InputField
+        <PasswordInput
           id="password-field"
-          type="password"
+          name="password"
           label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={fields.password.value}
+          onChange={handleChange}
           placeholder="**********"
+          error={errors.password}
         />
 
-        {type === "signup" && <PasswordRequirements />}
+        {type === "signup" && (
+          <PasswordRequirements password={fields.password.value} />
+        )}
       </div>
       {type === "signup" && (
         <div className="flex items-center">
@@ -59,9 +106,11 @@ const AuthoForm: React.FC<AuthoFormProps> = ({ type, onSubmit }) => {
         </div>
       )}
 
-      <Button type="submit">{type === "signin" ? "Sign In" : "Sign Up"}</Button>
+      <Button type="submit">
+        {type === "signin" ? "Sign In" : "Create account"}
+      </Button>
     </form>
   );
 };
 
-export default AuthoForm;
+export default AuthForm;
