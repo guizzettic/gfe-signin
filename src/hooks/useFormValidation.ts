@@ -1,26 +1,25 @@
 import { useCallback, useState } from "react";
 import { validate, ValidationRule } from "../utils/validation";
 
+// Define generic types for FieldConfig and FormConfig
 interface FieldConfig {
   value: string;
   rules: ValidationRule[];
 }
 
-interface FormConfig {
-  [key: string]: FieldConfig;
-}
+type FormConfig<T extends string> = Record<T, FieldConfig>;
 
-const useFormValidation = (
-  initialFields: FormConfig,
+type ErrorMessages<T extends string> = Partial<Record<T, string>>;
+
+const useFormValidation = <T extends string>(
+  initialFields: FormConfig<T>,
   validateOnChange: boolean = false,
 ) => {
-  const [fields, setFields] = useState(initialFields);
-  const [errors, setErrors] = useState<{ [key: string]: string | undefined }>(
-    {},
-  );
+  const [fields, setFields] = useState<FormConfig<T>>(initialFields);
+  const [errors, setErrors] = useState<ErrorMessages<T>>({});
 
   const validateFields = useCallback(
-    (name: string, value: string) => {
+    (name: T, value: string) => {
       if (!fields[name] || !Array.isArray(fields[name].rules)) {
         console.error(`No rules found for field: ${name}`);
         return true;
@@ -36,25 +35,27 @@ const useFormValidation = (
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
+      const fieldName = name as T;
+
       setFields((prev) => ({
         ...prev,
-        [name]: { ...prev[name], value },
+        [fieldName]: { ...prev[fieldName], value },
       }));
 
       if (validateOnChange) {
-        validateFields(name, value);
+        validateFields(fieldName, value);
       }
     },
     [validateFields, validateOnChange],
   );
 
   const validateForm = useCallback(() => {
-    const newErrors: { [key: string]: string | undefined } = {};
+    const newErrors: ErrorMessages<T> = {};
     let isValid = true;
 
     Object.keys(fields).forEach((key) => {
-      const error = validate(fields[key].value, fields[key].rules);
-      newErrors[key] = error;
+      const error = validate(fields[key as T].value, fields[key as T].rules);
+      newErrors[key as T] = error;
       if (error) isValid = false;
     });
 
