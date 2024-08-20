@@ -3,10 +3,22 @@ import useAuth from "../hooks/useAuth";
 import AuthForm from "../components/AuthForm";
 import signupImage from "../img/sign-up.jpg";
 import ErrorMessage from "../components/ErrorMessage";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [formError, setFormError] = useState<string | null>(null);
   const { signUp } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (email: string, password: string) => {
+    const { success, error } = await signUp(email, password);
+
+    if (success) {
+      navigate("/dashboard");
+    } else {
+      setFormError(error || "An error ocurred during sign in.");
+    }
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-gray-50 to-gray-300">
@@ -19,7 +31,7 @@ const SignUp: React.FC = () => {
             </h1>
             <AuthForm
               type="signup"
-              onSubmit={signUp}
+              onSubmit={handleSubmit}
               setFormError={setFormError}
             />
             <p className="text-sm font-medium">
