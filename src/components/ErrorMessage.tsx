@@ -2,13 +2,6 @@ interface ErrorMessageProps {
   errorType: string;
 }
 
-const errorTypes = [
-  "Incorrect email or password.",
-  "You must agree to the Terms of Service to create an account",
-  "Account already exists. Sign in instead?",
-];
-console.log(errorTypes);
-
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ errorType }) => {
   return (
     <div className="absolute left-1/2 top-10 z-50 flex w-[342px] max-w-full -translate-x-1/2 transform items-center gap-3 rounded-full bg-red-50 py-1 pl-1 pr-2.5 sm:top-7 sm:w-auto">

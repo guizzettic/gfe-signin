@@ -18,9 +18,16 @@ import {
 interface AuthFormProps {
   type: "signin" | "signup";
   onSubmit: (email: string, password: string) => void;
+  setFormError: (error: string | null) => void;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit }) => {
+// "Account already exists. Sign in instead?",
+
+const AuthForm: React.FC<AuthFormProps> = ({
+  type,
+  onSubmit,
+  setFormError,
+}) => {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const { fields, errors, handleChange, validateForm } = useFormValidation(
     {
@@ -45,18 +52,24 @@ const AuthForm: React.FC<AuthFormProps> = ({ type, onSubmit }) => {
       },
     },
     type === "signup",
+    // true, // Set validateOnChange to true for real-time validation
   );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (type === "signin") {
-      if (validateForm()) {
-        onSubmit(fields.email.value, fields.password.value);
+    setFormError(null);
+
+    if (validateForm()) {
+      if (type === "signup" && !agreeTerms) {
+        setFormError(
+          "You must agree to the Terms of Service to create an account.",
+        );
+        return;
       }
+      onSubmit(fields.email.value, fields.password.value);
+      setFormError(null);
     } else {
-      if (Object.values(errors).every((error) => !error) && agreeTerms) {
-        onSubmit(fields.email.value, fields.password.value);
-      }
+      setFormError("Incorrect email or password.");
     }
   };
 
