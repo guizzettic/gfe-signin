@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://guizzettic.github.io/gfe-signin",
+  "homepage": "https://guizzettic.github.io/gfe-signin/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
