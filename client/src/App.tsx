@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import "./App.css";
 import { AuthProvider } from "./context/AuthContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 const SignIn = lazy(() => import("./pages/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp"));
