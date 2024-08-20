@@ -17,11 +17,9 @@ import {
 
 interface AuthFormProps {
   type: "signin" | "signup";
-  onSubmit: (email: string, password: string) => void;
+  onSubmit: (email: string, password: string) => Promise<void>;
   setFormError: (error: string | null) => void;
 }
-
-// "Account already exists. Sign in instead?",
 
 const AuthForm: React.FC<AuthFormProps> = ({
   type,
@@ -29,6 +27,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   setFormError,
 }) => {
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { fields, errors, handleChange, validateForm } = useFormValidation(
     {
       email: {
@@ -52,10 +51,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
       },
     },
     type === "signup",
-    // true, // Set validateOnChange to true for real-time validation
   );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
@@ -66,10 +64,16 @@ const AuthForm: React.FC<AuthFormProps> = ({
         );
         return;
       }
-      onSubmit(fields.email.value, fields.password.value);
-      setFormError(null);
+      setIsSubmitting(true);
+      try {
+        await onSubmit(fields.email.value, fields.password.value);
+      } catch (error) {
+        setFormError((error as Error).message);
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
-      setFormError("Incorrect email or password.");
+      setFormError("Please correct the errors in the form.");
     }
   };
 
@@ -120,7 +124,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
       )}
 
       <Button type="submit">
-        {type === "signin" ? "Sign In" : "Create account"}
+        {isSubmitting
+          ? "Processing..."
+          : type === "signin"
+            ? "Sign In"
+            : "Create account"}
       </Button>
     </form>
   );
