@@ -24,8 +24,8 @@ export const SignIn: React.FC = () => {
     <div className="flex min-h-screen flex-col bg-gradient-to-b from-gray-50 to-gray-300">
       <div className="flex w-full grow flex-col items-center justify-center px-4 py-8 md:p-4">
         {formError && <ErrorMessage errorType={formError} />}
-        <div className="flex w-full max-w-[343px] grow flex-col items-center justify-center rounded-lg bg-white shadow-lg md:max-w-[736px] xl:h-[736px] xl:max-w-[1408px] xl:flex-row">
-          <div className="flex flex-col items-center justify-center gap-6 px-3 py-8 md:p-8 xl:w-1/2 xl:px-24 xl:py-8">
+        <div className="flex w-full max-w-[343px] grow flex-col items-center justify-center rounded-lg bg-white shadow-lg md:max-w-[736px] xl:max-w-[1408px] xl:flex-row">
+          <div className="flex flex-col items-center justify-center gap-4 px-3 py-8 md:p-8 xl:w-1/2 xl:px-24 xl:py-8">
             <h1 className="self-start text-3xl font-semibold text-neutral-900 xl:pl-[60px]">
               Log in to your account
             </h1>
@@ -34,18 +34,18 @@ export const SignIn: React.FC = () => {
               onSubmit={handleSubmit}
               setFormError={setFormError}
             />
-            <p className="text-sm font-medium">
+            <span className="text-sm font-medium">
               Don't have an account?{" "}
               <a href="/signup" className="text-indigo-700">
                 Sign up
               </a>
-            </p>
+            </span>
           </div>
           <div className="hidden items-center justify-center xl:flex">
             <img
               src={signinImage}
               alt="Person using VR headset"
-              className="h-[672px] w-[592px] rounded-lg object-cover"
+              className="h-[672px] w-[592px] -translate-x-3 transform rounded-lg object-cover"
             />
           </div>
         </div>

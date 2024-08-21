@@ -127,7 +127,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         {isSubmitting
           ? "Processing..."
           : type === "signin"
-            ? "Sign In"
+            ? "Submit"
             : "Create account"}
       </Button>
     </form>
