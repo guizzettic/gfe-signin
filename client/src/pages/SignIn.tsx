@@ -45,7 +45,7 @@ export const SignIn: React.FC = () => {
             <img
               src={signinImage}
               alt="Person using VR headset"
-              className="h-[672px] w-[592px] -translate-x-3 transform rounded-lg object-cover"
+              className="h-[672px] w-[592px] translate-x-2 transform rounded-lg object-cover"
             />
           </div>
         </div>

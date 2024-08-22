@@ -80,7 +80,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full space-y-6 md:w-[456px] xl:w-96"
+      className="w-full space-y-4 md:w-[456px] xl:w-96"
     >
       <InputField
         id="email-field"

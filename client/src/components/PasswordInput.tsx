@@ -19,7 +19,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = (props) => {
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
-    <div className="relative mt-[-4px]">
+    <div className="relative mt-[-6px]">
       <InputField {...props} type={showPassword ? "text" : "password"} />
       <button
         type="button"
