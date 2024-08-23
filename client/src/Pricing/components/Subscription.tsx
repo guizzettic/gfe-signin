@@ -1,12 +1,23 @@
-import { Plan } from "../types";
+import { IPlan } from "../types";
 import pricing_checkmark from "../../assets/pricing_checkmark.svg";
 
 interface SubscriptionProps {
-  plan: Plan;
+  plan: IPlan;
+  monthlyPricing: boolean;
 }
 
-const Subscription: React.FC<SubscriptionProps> = ({ plan }) => {
-  const { name, planDescription, price, popular, planBenefit } = plan;
+const Subscription: React.FC<SubscriptionProps> = ({
+  plan,
+  monthlyPricing,
+}) => {
+  const {
+    name,
+    planDescription,
+    monthlyPrice,
+    annualPrice,
+    popular,
+    planBenefit,
+  } = plan;
 
   return (
     <div className="flex flex-1 flex-col justify-between gap-2 self-stretch rounded-lg border-[0.5px] border-solid border-neutral-200 md:min-h-[532px]">
@@ -29,16 +40,16 @@ const Subscription: React.FC<SubscriptionProps> = ({ plan }) => {
         <div>
           <span className="text-base font-normal text-indigo-700">
             <span className="text-5xl font-semibold text-indigo-700">
-              ${price}
+              ${monthlyPricing ? monthlyPrice[0] : annualPrice[0]}
             </span>{" "}
             / month
           </span>
         </div>
-        <span className="text-base font-normal text-neutral-600">{`${popular ? "Prices in USD" : "Billed monthly"}`}</span>
+        <span className="text-base font-normal text-neutral-600">{`${monthlyPricing ? monthlyPrice[1] : annualPrice[1]}`}</span>
       </div>
 
       <ul className="flex flex-col gap-5 self-stretch p-4 md:min-h-44 md:px-8 lg:min-h-[300px] lg:px-4">
-        {planBenefit.map((benefit) => (
+        {planBenefit.map((benefit: string) => (
           <div className="flex items-center gap-3 self-stretch">
             <img
               src={pricing_checkmark}

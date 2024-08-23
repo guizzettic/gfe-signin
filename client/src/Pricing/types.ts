@@ -1,9 +1,10 @@
 export type PlanBenefit = string;
 
-export interface Plan {
+export interface IPlan {
   name: string;
   planDescription: string;
-  price: number;
+  monthlyPrice: [number, string];
+  annualPrice: [number, string];
   popular: boolean;
   planBenefit: PlanBenefit[];
 }

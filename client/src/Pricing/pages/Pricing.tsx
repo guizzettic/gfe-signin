@@ -20,7 +20,11 @@ const Pricing: React.FC = () => {
           {/* subscription tier */}
           <div className="flex flex-col items-center justify-center gap-8 self-stretch lg:flex-row">
             {PLAN_DETAILS.map((plan) => (
-              <Subscription key={plan.name} plan={plan} />
+              <Subscription
+                key={plan.name}
+                plan={plan}
+                monthlyPricing={monthlyPricing}
+              />
             ))}
           </div>
         </div>

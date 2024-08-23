@@ -1,10 +1,11 @@
-import { Plan } from "./types";
+import { IPlan } from "./types";
 
-export const PLAN_DETAILS: Plan[] = [
+export const PLAN_DETAILS: IPlan[] = [
   {
     name: "Basic Plan",
     planDescription: "Access to a curated selection of abstract images",
-    price: 9.99,
+    monthlyPrice: [9.99, "Billed Monthly"],
+    annualPrice: [6.99, `Billed aunnually ($${84})`],
     popular: false,
     planBenefit: [
       "Standard quality images",
@@ -15,7 +16,8 @@ export const PLAN_DETAILS: Plan[] = [
   {
     name: "Standard Plan",
     planDescription: "Next-level Integrations, priced economically",
-    price: 19.99,
+    monthlyPrice: [19.99, "Billed Monthly"],
+    annualPrice: [15.99, `Billed aunnually ($${192})`],
     popular: true,
     planBenefit: [
       "Expanded library with more diverse abstract images",
@@ -28,7 +30,8 @@ export const PLAN_DETAILS: Plan[] = [
   {
     name: "Premium Plan",
     planDescription: "Experience limitless living for power users",
-    price: 29.99,
+    monthlyPrice: [29.99, "Billed Monthly"],
+    annualPrice: [25.99, `Billed aunnually ($${312})`],
     popular: false,
     planBenefit: [
       "Full access to the entire image library, including exclusive content",
