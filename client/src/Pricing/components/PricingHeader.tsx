@@ -8,7 +8,7 @@ const PricingHeader: React.FC<PricingHeader> = ({
   monthlyPricing,
 }) => {
   return (
-    <div className="flex h-72 flex-col items-center justify-between bg-blue-200 md:px-8 lg:px-40">
+    <div className="flex h-72 flex-col items-center justify-between md:px-8 lg:px-40">
       <span className="text-center text-base font-semibold text-indigo-700">
         Pricing Tiers
       </span>
@@ -22,13 +22,13 @@ const PricingHeader: React.FC<PricingHeader> = ({
       <div className="flex w-80 items-center rounded">
         <button
           onClick={() => setMonthlyPricing(true)}
-          className={`flex grow items-center justify-center rounded bg-white text-base font-medium ${monthlyPricing ? `gap-1.5 border-[0.5px] border-solid border-neutral-200 px-4 py-2.5 text-neutral-900` : `gap-2 rounded-br rounded-tr text-neutral-600`}`}
+          className={`flex grow items-center justify-center rounded bg-white text-base font-medium ${monthlyPricing ? `gap-1.5 border-[0.5px] border-solid border-neutral-200 px-4 py-2.5 text-neutral-900 shadow-md` : `gap-2 rounded-br rounded-tr text-neutral-600`}`}
         >
           Monthly
         </button>
         <button
           onClick={() => setMonthlyPricing(false)}
-          className={`flex grow items-center justify-center rounded bg-white text-base font-medium ${!monthlyPricing ? `gap-1.5 border-[0.5px] border-solid border-neutral-200 px-4 py-2.5 text-neutral-900` : `gap-2 rounded-br rounded-tr text-neutral-600`}`}
+          className={`flex grow items-center justify-center rounded bg-white text-base font-medium ${!monthlyPricing ? `gap-1.5 border-[0.5px] border-solid border-neutral-200 px-4 py-2.5 text-neutral-900 shadow-md` : `gap-2 rounded-br rounded-tr text-neutral-600`}`}
         >
           Annually
         </button>
