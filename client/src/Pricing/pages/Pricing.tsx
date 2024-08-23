@@ -8,7 +8,7 @@ const Pricing: React.FC = () => {
 
   return (
     <div className="flex h-screen w-full flex-col bg-gradient-to-b from-gray-50 to-gray-300">
-      <div className="m-4 flex grow flex-col items-center overflow-y-auto rounded-md bg-white pt-12 shadow-md lg:pt-20">
+      <div className="m-4 flex grow flex-col items-center rounded-md bg-white pt-12 shadow-md lg:pt-20">
         <div className="flex w-80 flex-col gap-12 px-2 md:w-[704px] lg:w-[1216px] lg:gap-16">
           <PricingHeader
             setMonthlyPricing={setMonthlyPricing}
