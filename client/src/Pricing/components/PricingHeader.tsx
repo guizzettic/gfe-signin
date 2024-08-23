@@ -1,12 +1,8 @@
-interface PricingHeader {
-  monthlyPricing: boolean;
-  setMonthlyPricing: (option: boolean) => void;
-}
+import { usePricingContext } from "../context/PricingContext";
 
-const PricingHeader: React.FC<PricingHeader> = ({
-  setMonthlyPricing,
-  monthlyPricing,
-}) => {
+const PricingHeader: React.FC = () => {
+  const { monthlyPricing, setMonthlyPricing } = usePricingContext();
+
   return (
     <div className="flex h-72 flex-col items-center justify-between md:px-8 lg:px-40">
       <span className="text-center text-base font-semibold text-indigo-700">

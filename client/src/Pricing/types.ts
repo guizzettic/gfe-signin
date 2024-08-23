@@ -8,3 +8,8 @@ export interface IPlan {
   popular: boolean;
   planBenefit: PlanBenefit[];
 }
+
+export interface PricingContextType {
+  monthlyPricing: boolean;
+  setMonthlyPricing: (value: boolean) => void;
+}
