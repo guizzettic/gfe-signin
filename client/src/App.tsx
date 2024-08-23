@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const SignIn = lazy(() => import("./pages/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp"));
+const Pricing = lazy(() => import("./Pricing/pages/Pricing"));
 const AuthSuccess = lazy(() => import("./pages/AuthSuccess"));
 
 const App: React.FC = () => {
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         <Router>
           <Routes>
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/dashboard" element={<AuthSuccess />} />
             <Route path="/" element={<SignIn />} />
