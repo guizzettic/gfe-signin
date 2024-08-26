@@ -20,7 +20,7 @@ const Subscription: React.FC<SubscriptionProps> = ({ plan }) => {
 
   return (
     <div
-      className={`flex h-[644px] flex-1 flex-col justify-around self-stretch rounded-lg border-[1px] border-solid border-neutral-200 md:h-[612px] md:min-h-[532px] lg:h-[676px] ${popular ? "border-indigo-700 shadow-md" : ""} `}
+      className={`flex h-[644px] flex-1 flex-col justify-around self-stretch rounded-lg border-[1.5px] border-solid border-neutral-200 md:h-[612px] md:min-h-[532px] lg:h-[676px] ${popular ? "border-indigo-700 shadow-md" : ""} `}
     >
       {popular && (
         <div className="flex items-center justify-around rounded-tl-md rounded-tr-md bg-indigo-50 px-2 py-4">

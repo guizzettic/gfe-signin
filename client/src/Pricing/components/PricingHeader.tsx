@@ -4,7 +4,7 @@ const PricingHeader: React.FC = () => {
   const { monthlyPricing, setMonthlyPricing } = usePricingContext();
 
   return (
-    <div className="flex h-64 flex-col items-center justify-between md:px-8 lg:px-36">
+    <div className="flex h-72 flex-col items-center justify-between md:h-64 md:px-8 lg:px-36">
       <span className="text-center text-base font-semibold text-indigo-700">
         Pricing Tiers
       </span>
