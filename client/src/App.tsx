@@ -6,22 +6,26 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 const SignIn = lazy(() => import("./pages/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const Pricing = lazy(() => import("./Pricing/pages/Pricing"));
+const HeroSection = lazy(() => import("./Hero_Section/pages/HeroSection"));
 const AuthSuccess = lazy(() => import("./pages/AuthSuccess"));
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Suspense fallback={<div>Loading...</div>}>
-        <Router>
-          <Routes>
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/dashboard" element={<AuthSuccess />} />
-            <Route path="/" element={<SignIn />} />
-            <Route path="*" element={<SignIn />} />
-          </Routes>
-        </Router>
+        <div className="flex h-full w-full flex-col bg-gradient-to-b from-gray-50 to-gray-300">
+          <Router>
+            <Routes>
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/hero_section" element={<HeroSection />} />
+              <Route path="/dashboard" element={<AuthSuccess />} />
+              <Route path="/" element={<SignIn />} />
+              <Route path="*" element={<SignIn />} />
+            </Routes>
+          </Router>
+        </div>
       </Suspense>
     </AuthProvider>
   );
