@@ -19,7 +19,9 @@ const Subscription: React.FC<SubscriptionProps> = ({ plan }) => {
   const { monthlyPricing } = usePricingContext();
 
   return (
-    <div className="flex flex-1 flex-col justify-between gap-2 self-stretch rounded-lg border-[1px] border-solid border-neutral-200 md:min-h-[532px]">
+    <div
+      className={`flex flex-1 flex-col justify-between gap-2 self-stretch rounded-lg border-[1px] border-solid border-neutral-200 md:min-h-[532px] ${popular ? "border-indigo-700 shadow-md" : ""}`}
+    >
       {popular && (
         <div className="flex items-center justify-center rounded-tl-md rounded-tr-md bg-indigo-50 px-2 py-4">
           <h1 className="text-center text-xl font-bold text-indigo-700">
@@ -37,8 +39,10 @@ const Subscription: React.FC<SubscriptionProps> = ({ plan }) => {
 
       <div className="flex flex-col gap-2 p-4 md:px-8 lg:p-6">
         <div>
-          <span className="text-base font-normal text-indigo-700">
-            <span className="text-5xl font-semibold text-indigo-700">
+          <span
+            className={`text-base font-normal text-indigo-700 ${popular ? "text-indigo-700" : "text-neutral-900"}`}
+          >
+            <span className="text-5xl font-semibold">
               ${monthlyPricing ? monthlyPrice[0] : annualPrice[0]}
             </span>{" "}
             / month
