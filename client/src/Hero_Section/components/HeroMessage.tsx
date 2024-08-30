@@ -1,6 +1,6 @@
 const HeroMessage: React.FC = () => {
   return (
-    <div className="flex h-[260px] flex-col justify-center gap-6 bg-black md:h-[252px] md:gap-16">
+    <div className="flex h-[260px] flex-col justify-center gap-6 md:h-[252px] md:gap-16">
       <div className="flex flex-col justify-center gap-6 self-stretch">
         <h1 className="text-4xl font-semibold text-neutral-900 md:text-5xl lg:text-6xl">
           Well crafted abstract images
