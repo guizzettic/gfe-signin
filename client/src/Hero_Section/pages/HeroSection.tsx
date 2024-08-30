@@ -9,6 +9,7 @@ const HeroSection: React.FC = () => {
         <img
           src={prism}
           aria-label="prism-photo"
+          alt="prism-photo"
           className="flex grow items-center justify-center self-stretch rounded-lg object-cover py-[32.12166976928711px] lg:h-[526px] lg:w-[696px]"
         />
       </div>
