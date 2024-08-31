@@ -1,4 +1,4 @@
-import prism from "../assets/prism.png";
+import prism from "../assets/prism.svg";
 import HeroMessage from "../components/HeroMessage";
 
 const HeroSection: React.FC = () => {
