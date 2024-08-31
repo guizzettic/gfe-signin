@@ -1,7 +1,7 @@
 const HeroMessage: React.FC = () => {
   return (
-    <div className="flex w-full max-w-2xl flex-col justify-center gap-6 md:gap-16 lg:w-1/2">
-      <div className="flex flex-col justify-center gap-6 self-stretch">
+    <div className="flex w-full max-w-2xl flex-col justify-center gap-8 md:gap-16 lg:w-1/2">
+      <div className="flex flex-col justify-around gap-6 self-stretch">
         <h1 className="text-4xl font-semibold text-neutral-900 md:text-5xl lg:text-6xl">
           Well crafted abstract images
         </h1>
