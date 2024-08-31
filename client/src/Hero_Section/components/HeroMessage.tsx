@@ -1,6 +1,6 @@
 const HeroMessage: React.FC = () => {
   return (
-    <div className="flex h-[260px] flex-col justify-center gap-6 md:h-[252px] md:gap-16">
+    <div className="flex w-full max-w-2xl flex-col justify-center gap-6 md:gap-16 lg:w-1/2">
       <div className="flex flex-col justify-center gap-6 self-stretch">
         <h1 className="text-4xl font-semibold text-neutral-900 md:text-5xl lg:text-6xl">
           Well crafted abstract images
@@ -10,7 +10,8 @@ const HeroMessage: React.FC = () => {
           presentations.
         </span>
       </div>
-      <div className="flex gap-4 self-stretch md:w-[458px] md:gap-8 lg:w-[383px]">
+
+      <div className="flex gap-6 self-stretch md:gap-8">
         <button
           aria-label="learn more button"
           role="button"

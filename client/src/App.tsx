@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <AuthProvider>
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="flex h-full w-full flex-col bg-gradient-to-b from-gray-50 to-gray-300">
+        <div className="flex min-h-screen w-full flex-col bg-gradient-to-b from-gray-50 to-[#d2d6db]">
           <Router>
             <Routes>
               <Route path="/signin" element={<SignIn />} />
